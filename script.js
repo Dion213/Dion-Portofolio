@@ -2,6 +2,21 @@ const menuButton = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 const navLinks = document.querySelectorAll(".site-nav a");
 const reveals = document.querySelectorAll(".reveal");
+const introScreen = document.querySelector(".intro-screen");
+
+if (introScreen) {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const introDuration = reduceMotion ? 350 : 1800;
+
+  window.setTimeout(() => {
+    introScreen.classList.add("is-hidden");
+    document.body.classList.remove("intro-playing");
+  }, introDuration);
+
+  introScreen.addEventListener("transitionend", () => {
+    introScreen.remove();
+  });
+}
 
 if (menuButton && nav) {
   menuButton.addEventListener("click", () => {
