@@ -364,26 +364,35 @@ main,
   font-size: 1.07rem;
 }
 
-.chips {
+.tool-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
-.chips span {
-  padding: 11px 14px;
+.tool-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 18px;
   background: white;
-  color: var(--ink);
-  font-weight: 700;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  box-shadow: 0 14px 40px rgba(18, 24, 20, 0.07);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.chips span:hover {
-  transform: translateY(-3px);
-  color: white;
-  background: var(--accent);
+.tool-icon img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.tool-icon:hover {
+  transform: translateY(-5px);
+  border-color: rgba(29, 79, 58, 0.35);
+  background: var(--accent-soft);
+  box-shadow: 0 20px 55px rgba(18, 24, 20, 0.12);
 }
 
 .list {
@@ -410,11 +419,32 @@ main,
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(290px, 62%);
+  grid-template-columns: none;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 4px 0 18px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 79, 58, 0.45) transparent;
+}
+
+.project-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.project-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-grid::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(29, 79, 58, 0.45);
 }
 
 .project-card {
+  scroll-snap-align: start;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 22px;
@@ -561,6 +591,10 @@ main,
   .project-grid {
     grid-template-columns: 1fr;
   }
+
+  .project-grid {
+    grid-auto-columns: minmax(280px, 86%);
+  }
 }
 
 @media (max-width: 560px) {
@@ -584,6 +618,10 @@ main,
 
   .button {
     width: 100%;
+  }
+
+  .tool-grid {
+    justify-content: center;
   }
 
   .footer {
