@@ -396,24 +396,24 @@ main,
   gap: 18px;
   min-height: 96px;
   padding: 18px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--line);
   border-radius: 24px;
-  background: #202020;
-  color: white;
-  box-shadow: 0 24px 70px rgba(18, 24, 20, 0.13);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+  box-shadow: 0 20px 60px rgba(18, 24, 20, 0.09);
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tool-icon:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.18);
-  background: #282828;
-  box-shadow: 0 30px 80px rgba(18, 24, 20, 0.2);
+  border-color: rgba(29, 79, 58, 0.28);
+  background: #ffffff;
+  box-shadow: 0 28px 76px rgba(18, 24, 20, 0.14);
 }
 
 .tool-icon::after {
   content: attr(title);
-  color: white;
+  color: var(--ink);
   font-size: 1.12rem;
   font-weight: 900;
   letter-spacing: 0;
