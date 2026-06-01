@@ -365,34 +365,200 @@ main,
 }
 
 .tool-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 250px);
+  gap: 16px;
+  overflow-x: auto;
+  padding: 4px 0 18px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 79, 58, 0.45) transparent;
+}
+
+.tool-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tool-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tool-grid::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(29, 79, 58, 0.45);
 }
 
 .tool-icon {
-  display: grid;
-  place-items: center;
-  width: 62px;
-  height: 62px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: white;
-  box-shadow: 0 14px 40px rgba(18, 24, 20, 0.07);
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 96px;
+  padding: 18px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  background: #202020;
+  color: white;
+  box-shadow: 0 24px 70px rgba(18, 24, 20, 0.13);
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.tool-icon img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
 }
 
 .tool-icon:hover {
   transform: translateY(-5px);
-  border-color: rgba(29, 79, 58, 0.35);
-  background: var(--accent-soft);
-  box-shadow: 0 20px 55px rgba(18, 24, 20, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: #282828;
+  box-shadow: 0 30px 80px rgba(18, 24, 20, 0.2);
+}
+
+.tool-icon::after {
+  content: attr(title);
+  color: white;
+  font-size: 1.12rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.tool-logo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.tool-logo.sql {
+  color: #1f6feb;
+  border: 3px solid #1f6feb;
+  border-radius: 50%;
+  font-size: 0.64rem;
+}
+
+.tool-logo.mysql {
+  color: #00618a;
+  font-size: 0.92rem;
+}
+
+.tool-logo.mysql::before {
+  content: "";
+  position: absolute;
+  inset: 8px 3px 7px;
+  border: 3px solid #00618a;
+  border-top: 0;
+  border-radius: 0 0 18px 18px;
+}
+
+.tool-logo.excel,
+.tool-logo.powerpoint {
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+
+.tool-logo.excel {
+  background: #107c41;
+}
+
+.tool-logo.powerpoint {
+  background: #c43e1c;
+}
+
+.tool-logo.bpmn::before,
+.tool-logo.drawio::before,
+.tool-logo.office::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 4px solid currentColor;
+}
+
+.tool-logo.bpmn {
+  color: #0f766e;
+}
+
+.tool-logo.bpmn::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: currentColor;
+  box-shadow: 14px 0 currentColor, 7px 13px currentColor;
+}
+
+.tool-logo.drawio {
+  color: #f08705;
+}
+
+.tool-logo.drawio::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 22px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.tool-logo.figma {
+  background:
+    radial-gradient(circle at 35% 22%, #f24e1e 0 23%, transparent 24%),
+    radial-gradient(circle at 65% 22%, #ff7262 0 23%, transparent 24%),
+    radial-gradient(circle at 35% 50%, #a259ff 0 23%, transparent 24%),
+    radial-gradient(circle at 65% 50%, #1abcfe 0 23%, transparent 24%),
+    radial-gradient(circle at 35% 78%, #0acf83 0 23%, transparent 24%);
+}
+
+.tool-logo.google {
+  color: #4285f4;
+  font-size: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.tool-logo.office {
+  color: #d83b01;
+}
+
+.tool-logo.office::before {
+  transform: skewY(-9deg);
+}
+
+.tool-logo.powerbi {
+  align-items: end;
+  grid-template-columns: repeat(3, 7px);
+  gap: 3px;
+}
+
+.tool-logo.powerbi::before,
+.tool-logo.powerbi::after,
+.tool-logo.powerbi {
+  color: #f2c811;
+}
+
+.tool-logo.powerbi::before,
+.tool-logo.powerbi::after {
+  content: "";
+  display: block;
+  width: 7px;
+  border-radius: 7px 7px 2px 2px;
+  background: currentColor;
+}
+
+.tool-logo.powerbi::before {
+  height: 19px;
+  opacity: 0.75;
+}
+
+.tool-logo.powerbi::after {
+  height: 29px;
+}
+
+.tool-logo.powerbi {
+  background:
+    linear-gradient(currentColor, currentColor) left 24px bottom 0 / 7px 12px no-repeat;
 }
 
 .list {
@@ -621,7 +787,7 @@ main,
   }
 
   .tool-grid {
-    justify-content: center;
+    grid-auto-columns: minmax(210px, 78%);
   }
 
   .footer {
